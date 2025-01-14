@@ -1,0 +1,9 @@
+#table {
+    width: 90vw;
+    text-align: left;
+}
+
+#table th {
+    width: 100vw;
+    border-bottom: 1px solid black;
+}
