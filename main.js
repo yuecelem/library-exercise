@@ -3,6 +3,8 @@ const dialog = document.getElementById('dialog');
 const addBtn = document.getElementById('addBtn');
 const cancelBtn = document.getElementById('cancelBtn');
 const confirmBtn = document.getElementById('confirmBtn');
+const removeBtn = document.querySelectorAll(".delBtn");
+
 
 
 const myLibrary = [];
@@ -23,7 +25,7 @@ function addBookToLibrary(title, author, page, publishYear, isRead){
 
 addBookToLibrary('lotr', 'tolkien', 399, 1983, 0)
 addBookToLibrary('dune', 'herbert', 766, 1989, 1)
-addBookToLibrary('book2', 'author2', 7226, 1789, 0)
+addBookToLibrary('book2', 'author2', 7226, 1789, 1)
 
 
 
@@ -34,6 +36,7 @@ function clearLib() {
         table.deleteRow(1);
     }
 }
+
 
 function makeLib() {
     console.log(myLibrary)
@@ -51,11 +54,22 @@ function makeLib() {
             } else newCell.innerText = book[Object.keys(book)[i]];
         }
     });
-
+    addDeleteBtn()
 }
 
-makeLib()
+function addDeleteBtn() {
+    for(let i = 1; i < table.rows.length; i++){
+        let newCell = table.rows[i].insertCell(-1);
+        // newCell.innerHTML = '<div class="delBtn">Remove</div>'
 
+        const delButton = document.createElement("div");
+        delButton.classList.add("delBtn");
+        delButton.id = 'delBtn' + i;
+        delButton.textContent = "Remove"
+        newCell.appendChild(delButton);
+
+    }
+}
 
 
 addBtn.addEventListener("click", () => {
@@ -67,15 +81,18 @@ cancelBtn.addEventListener("click", () => {
 })
 
 confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const publishYear = document.getElementById('publish-year').value;
-    const isRead = document.getElementById('is-read').value;
+    let isRead = document.getElementById('is-read');
 
-    e.preventDefault();
+    if(isRead.checked == true) {
+        isRead = 1;
+    } else {isRead = 0};
 
-    if ((title == null || title == '') || (author == null || author == '') || (pages == null || pages == '') || (publishYear == null || publishYear == '') || (isRead == null || isRead == '')) {
+    if ((title == null || title == '') || (author == null || author == '') || (pages == null || pages == '') || (publishYear == null || publishYear == '')) {
         window.alert("Please fill all fields!")
         console.log("alert")
     } else {
@@ -84,9 +101,10 @@ confirmBtn.addEventListener("click", (e) => {
     makeLib();
     document.querySelector('form').reset();
     dialog.close(); }
-    
-
-    
 })
+
+makeLib()
+
+console.log(removeBtn)
 
 
