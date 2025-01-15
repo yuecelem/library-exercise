@@ -10,6 +10,33 @@
     <h1>
         Library
     </h1>
+
+    <div>
+        <button id="addBtn">Add</button>
+    </div>
+
+    <dialog id="dialog">
+        <form>
+            <label for="title">Book Title:</label>
+            <input id="title" type="text" name="title">
+
+            <label for="author">Author:</label>
+            <input id="author" type="text" name="author">
+
+            <label for="pages">Pages:</label>
+            <input id="pages" type="number" name="pages">
+            
+            <label for="publish-year">Year Published:</label>
+            <input id="publish-year" type="number" name="publish-year">
+
+            <label for="is-read">Read:</label>
+            <input id="is-read" type="checkbox" name="is-read">   
+            
+            <button formmethod="dialog" id="cancelBtn">Cancel</button>
+            <button id="confirmBtn">Add</button>
+        </form>  
+    </dialog>
+    
     <table id="table">
         <tr>
             <th>Title</th>
@@ -17,6 +44,8 @@
             <th>Page</th>
             <th>Year Published</th>
             <th>Read</th>
+            <th>Remove</th>
+
         </tr>        
     </table>
     <script src="main.js"></script>
