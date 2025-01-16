@@ -63,8 +63,6 @@ function makeLib() {
 function addDeleteBtn() {
     for(let i = 1; i < table.rows.length; i++){
         let newCell = table.rows[i].insertCell(-1);
-        // newCell.innerHTML = '<div class="delBtn">Remove</div>'
-
         const delButton = document.createElement("div");
         delButton.classList.add("delBtn");
         delButton.id = 'delBtn' + i;
@@ -105,6 +103,9 @@ confirmBtn.addEventListener("click", (e) => {
     document.querySelector('form').reset();
     dialog.close(); }
 })
+
+// remove from myLibrary the deleted entry by index
+// remake the library
 
 document.addEventListener ("click", (event) => {
     if (event.target.classList.contains('delBtn')) {
