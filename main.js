@@ -3,7 +3,6 @@ const dialog = document.getElementById('dialog');
 const addBtn = document.getElementById('addBtn');
 const cancelBtn = document.getElementById('cancelBtn');
 const confirmBtn = document.getElementById('confirmBtn');
-const removeBtn = document.querySelectorAll(".delBtn");
 
 
 
@@ -41,9 +40,13 @@ function clearLib() {
 function makeLib() {
     console.log(myLibrary)
     clearLib();
+    let rowIndex = 0;
     
     myLibrary.forEach(book => {
         let newRow = table.insertRow(-1);
+        // newRow.setAttributeNode(index);
+        newRow.setAttribute('index', rowIndex);
+        ++rowIndex;
         for (let i = 0; i < Object.entries(book).length; i++) {
             let newCell = newRow.insertCell(i);
             
@@ -103,8 +106,15 @@ confirmBtn.addEventListener("click", (e) => {
     dialog.close(); }
 })
 
+document.addEventListener ("click", (event) => {
+    if (event.target.classList.contains('delBtn')) {
+        const indextoRemove = event.target.parentElement.parentElement.getAttribute('index');
+        myLibrary.splice(indextoRemove, 1);
+        makeLib();
+    }
+})
+
 makeLib()
 
-console.log(removeBtn)
 
 
